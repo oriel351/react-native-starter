@@ -26,12 +26,21 @@ export default function ParallaxScrollView({
 }: Props) {
   const backgroundColor = useThemeColor({}, 'background');
   const colorScheme = useColorScheme() ?? 'light';
-  const themedStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     scroll: {
+      flex: 1,
       backgroundColor,
     },
     header: {
+      height: HEADER_HEIGHT,
+      overflow: 'hidden',
       backgroundColor: headerBackgroundColor[colorScheme],
+    },
+    content: {
+      flex: 1,
+      padding: spacing.xl,
+      gap: spacing.md,
+      overflow: 'hidden',
     },
   });
   const scrollRef = useAnimatedRef<Animated.ScrollView>();
@@ -56,33 +65,12 @@ export default function ParallaxScrollView({
   return (
     <Animated.ScrollView
       ref={scrollRef}
-      style={[styles.scroll, themedStyles.scroll]}
+      style={styles.scroll}
       scrollEventThrottle={16}>
-      <Animated.View
-        style={[
-          styles.header,
-          themedStyles.header,
-          headerAnimatedStyle,
-        ]}>
+      <Animated.View style={[styles.header, headerAnimatedStyle]}>
         {headerImage}
       </Animated.View>
       <ThemedView style={styles.content}>{children}</ThemedView>
     </Animated.ScrollView>
   );
 }
-
-const styles = StyleSheet.create({
-  scroll: {
-    flex: 1,
-  },
-  header: {
-    height: HEADER_HEIGHT,
-    overflow: 'hidden',
-  },
-  content: {
-    flex: 1,
-    padding: spacing.xl,
-    gap: spacing.md,
-    overflow: 'hidden',
-  },
-});

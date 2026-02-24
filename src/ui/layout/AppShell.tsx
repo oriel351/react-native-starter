@@ -3,7 +3,6 @@ import { ScrollView, StyleSheet, View, type StyleProp, type ViewStyle } from 're
 import { SafeAreaView } from 'react-native-safe-area-context';
 
 import { useTheme } from '@/ui/theme';
-import { spacing } from '@/ui/theme/spacing';
 
 type AppShellProps = {
   children: ReactNode;
@@ -21,9 +20,22 @@ export function AppShell({
   contentContainerStyle,
 }: AppShellProps) {
   const { colors, layout, spacing } = useTheme();
-  const themedStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     safeArea: {
+      flex: 1,
       backgroundColor: colors.background,
+    },
+    body: {
+      flex: 1,
+      alignItems: 'center',
+    },
+    scrollView: {
+      flex: 1,
+      width: '100%',
+    },
+    contentBase: {
+      width: '100%',
+      gap: spacing.md,
     },
     content: {
       maxWidth: layout.contentMaxWidth,
@@ -32,18 +44,28 @@ export function AppShell({
       paddingTop: spacing.screenVertical,
       paddingBottom: spacing.screenVertical,
     },
+    fillContent: {
+      flex: 1,
+    },
+    scrollContent: {
+      flexGrow: 1,
+    },
+    centered: {
+      alignItems: 'center',
+      justifyContent: 'center',
+    },
   });
 
   const baseContentStyle = [
     styles.contentBase,
-    themedStyles.content,
+    styles.content,
     scroll ? styles.scrollContent : styles.fillContent,
     centered ? styles.centered : undefined,
     contentContainerStyle,
   ];
 
   return (
-    <SafeAreaView style={[styles.safeArea, themedStyles.safeArea]} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={styles.safeArea} edges={['top', 'left', 'right']}>
       {header}
       <View style={styles.body}>
         {scroll ? (
@@ -60,31 +82,3 @@ export function AppShell({
     </SafeAreaView>
   );
 }
-
-const styles = StyleSheet.create({
-  safeArea: {
-    flex: 1,
-  },
-  body: {
-    flex: 1,
-    alignItems: 'center',
-  },
-  scrollView: {
-    flex: 1,
-    width: '100%',
-  },
-  contentBase: {
-    width: '100%',
-    gap: spacing.md,
-  },
-  fillContent: {
-    flex: 1,
-  },
-  scrollContent: {
-    flexGrow: 1,
-  },
-  centered: {
-    alignItems: 'center',
-    justifyContent: 'center',
-  },
-});

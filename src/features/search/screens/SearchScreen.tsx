@@ -6,7 +6,7 @@ import { useTheme } from '@/ui/theme';
 
 export default function SearchScreen() {
   const { colors, textAlignStart, typography } = useTheme();
-  const themedStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     title: {
       color: colors.text,
       fontSize: typography.title.fontSize,
@@ -17,11 +17,7 @@ export default function SearchScreen() {
 
   return (
     <Screen header={<AppHeader title="Search" />} centered>
-      <Text style={[styles.title, themedStyles.title]}>Search</Text>
+      <Text style={styles.title}>Search</Text>
     </Screen>
   );
 }
-
-const styles = StyleSheet.create({
-  title: {},
-});

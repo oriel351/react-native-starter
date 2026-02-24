@@ -17,16 +17,39 @@ export function ThemedText({
   ...rest
 }: ThemedTextProps) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
-  const themedStyles = StyleSheet.create({
+  const styles = StyleSheet.create({
     textColor: {
       color,
+    },
+    default: {
+      fontSize: typography.body.fontSize,
+      lineHeight: 24,
+    },
+    defaultSemiBold: {
+      fontSize: typography.body.fontSize,
+      lineHeight: 24,
+      fontWeight: '600',
+    },
+    title: {
+      fontSize: 32,
+      fontWeight: 'bold',
+      lineHeight: 32,
+    },
+    subtitle: {
+      fontSize: 20,
+      fontWeight: 'bold',
+    },
+    link: {
+      lineHeight: 30,
+      fontSize: typography.body.fontSize,
+      color: colors.light.primary,
     },
   });
 
   return (
     <Text
       style={[
-        themedStyles.textColor,
+        styles.textColor,
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,
@@ -38,29 +61,3 @@ export function ThemedText({
     />
   );
 }
-
-const styles = StyleSheet.create({
-  default: {
-    fontSize: typography.body.fontSize,
-    lineHeight: 24,
-  },
-  defaultSemiBold: {
-    fontSize: typography.body.fontSize,
-    lineHeight: 24,
-    fontWeight: '600',
-  },
-  title: {
-    fontSize: 32,
-    fontWeight: 'bold',
-    lineHeight: 32,
-  },
-  subtitle: {
-    fontSize: 20,
-    fontWeight: 'bold',
-  },
-  link: {
-    lineHeight: 30,
-    fontSize: typography.body.fontSize,
-    color: colors.light.primary,
-  },
-});
