@@ -21,23 +21,29 @@ export function AppShell({
   contentContainerStyle,
 }: AppShellProps) {
   const { colors, layout, spacing } = useTheme();
-
-  const baseContentStyle = [
-    styles.contentBase,
-    {
+  const themedStyles = StyleSheet.create({
+    safeArea: {
+      backgroundColor: colors.background,
+    },
+    content: {
       maxWidth: layout.contentMaxWidth,
       paddingStart: spacing.screenHorizontal,
       paddingEnd: spacing.screenHorizontal,
       paddingTop: spacing.screenVertical,
       paddingBottom: spacing.screenVertical,
     },
+  });
+
+  const baseContentStyle = [
+    styles.contentBase,
+    themedStyles.content,
     scroll ? styles.scrollContent : styles.fillContent,
     centered ? styles.centered : undefined,
     contentContainerStyle,
   ];
 
   return (
-    <SafeAreaView style={[styles.safeArea, { backgroundColor: colors.background }]} edges={['top', 'left', 'right']}>
+    <SafeAreaView style={[styles.safeArea, themedStyles.safeArea]} edges={['top', 'left', 'right']}>
       {header}
       <View style={styles.body}>
         {scroll ? (

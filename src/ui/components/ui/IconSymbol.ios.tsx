@@ -1,5 +1,5 @@
 import { SymbolView, SymbolViewProps, SymbolWeight } from 'expo-symbols';
-import { StyleProp, ViewStyle } from 'react-native';
+import { StyleProp, StyleSheet, ViewStyle } from 'react-native';
 
 export function IconSymbol({
   name,
@@ -14,19 +14,20 @@ export function IconSymbol({
   style?: StyleProp<ViewStyle>;
   weight?: SymbolWeight;
 }) {
+  const dynamicStyles = StyleSheet.create({
+    size: {
+      width: size,
+      height: size,
+    },
+  });
+
   return (
     <SymbolView
       weight={weight}
       tintColor={color}
       resizeMode="scaleAspectFit"
       name={name}
-      style={[
-        {
-          width: size,
-          height: size,
-        },
-        style,
-      ]}
+      style={[dynamicStyles.size, style]}
     />
   );
 }

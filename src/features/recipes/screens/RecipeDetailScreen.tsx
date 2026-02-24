@@ -8,21 +8,18 @@ import { useTheme } from '@/ui/theme';
 export default function RecipeDetailScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
   const { colors, textAlignStart, typography } = useTheme();
+  const themedStyles = StyleSheet.create({
+    title: {
+      color: colors.text,
+      fontSize: typography.title.fontSize,
+      fontWeight: typography.title.fontWeight,
+      textAlign: textAlignStart,
+    },
+  });
 
   return (
     <Screen header={<AppHeader title="Recipe Detail" />} centered>
-      <Text
-        style={[
-          styles.title,
-          {
-            color: colors.text,
-            fontSize: typography.title.fontSize,
-            fontWeight: typography.title.fontWeight,
-            textAlign: textAlignStart,
-          },
-        ]}>
-        {`Recipe Detail: ${id ?? ''}`}
-      </Text>
+      <Text style={[styles.title, themedStyles.title]}>{`Recipe Detail: ${id ?? ''}`}</Text>
     </Screen>
   );
 }

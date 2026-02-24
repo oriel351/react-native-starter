@@ -10,6 +10,20 @@ import { IconSymbol } from '@/ui/components/ui/IconSymbol';
 import { Fonts } from '@/ui/theme/theme';
 
 export default function ExploreScreen() {
+  const dynamicStyles = StyleSheet.create({
+    titleRounded: {
+      fontFamily: Fonts.rounded,
+    },
+    centerImage: {
+      width: 100,
+      height: 100,
+      alignSelf: 'center',
+    },
+    monoText: {
+      fontFamily: Fonts.mono,
+    },
+  });
+
   return (
     <ParallaxScrollView
       headerBackgroundColor={{ light: '#D0D0D0', dark: '#353636' }}
@@ -22,11 +36,7 @@ export default function ExploreScreen() {
         />
       }>
       <ThemedView style={styles.titleContainer}>
-        <ThemedText
-          type="title"
-          style={{
-            fontFamily: Fonts.rounded,
-          }}>
+        <ThemedText type="title" style={dynamicStyles.titleRounded}>
           Explore
         </ThemedText>
       </ThemedView>
@@ -59,7 +69,7 @@ export default function ExploreScreen() {
         </ThemedText>
         <Image
           source={require('../../../../assets/images/react-logo.png')}
-          style={{ width: 100, height: 100, alignSelf: 'center' }}
+          style={dynamicStyles.centerImage}
         />
         <ExternalLink href="https://reactnative.dev/docs/images">
           <ThemedText type="link">Learn more</ThemedText>
@@ -80,7 +90,7 @@ export default function ExploreScreen() {
           This template includes an example of an animated component. The{' '}
           <ThemedText type="defaultSemiBold">components/HelloWave.tsx</ThemedText> component uses
           the powerful{' '}
-          <ThemedText type="defaultSemiBold" style={{ fontFamily: Fonts.mono }}>
+          <ThemedText type="defaultSemiBold" style={dynamicStyles.monoText}>
             react-native-reanimated
           </ThemedText>{' '}
           library to create a waving hand animation.

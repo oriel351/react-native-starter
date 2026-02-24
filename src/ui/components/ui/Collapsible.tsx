@@ -10,6 +10,11 @@ import { useColorScheme } from '@/ui/theme/useColorScheme';
 export function Collapsible({ children, title }: PropsWithChildren & { title: string }) {
   const [isOpen, setIsOpen] = useState(false);
   const theme = useColorScheme() ?? 'light';
+  const dynamicStyles = StyleSheet.create({
+    chevron: {
+      transform: [{ rotate: isOpen ? '90deg' : '0deg' }],
+    },
+  });
 
   return (
     <ThemedView>
@@ -22,7 +27,7 @@ export function Collapsible({ children, title }: PropsWithChildren & { title: st
           size={18}
           weight="medium"
           color={theme === 'light' ? colors.light.mutedText : colors.dark.mutedText}
-          style={{ transform: [{ rotate: isOpen ? '90deg' : '0deg' }] }}
+          style={dynamicStyles.chevron}
         />
 
         <ThemedText type="defaultSemiBold">{title}</ThemedText>

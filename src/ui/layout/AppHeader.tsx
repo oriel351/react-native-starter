@@ -16,6 +16,30 @@ type AppHeaderProps = {
 
 export function AppHeader({ title, leftAction, rightAction, style }: AppHeaderProps) {
   const { colors, isRTL, layout, spacing, textAlignStart, typography } = useTheme();
+  const themedStyles = StyleSheet.create({
+    container: {
+      backgroundColor: colors.surface,
+      borderBottomColor: colors.border,
+      minHeight: layout.headerMinHeight,
+      paddingStart: spacing.screenHorizontal,
+      paddingEnd: spacing.screenHorizontal,
+      paddingTop: spacing.sm,
+      paddingBottom: spacing.sm,
+    },
+    sideWidth: {
+      flexBasis: layout.headerActionWidth,
+    },
+    title: {
+      color: colors.text,
+      fontSize: typography.subtitle.fontSize,
+      fontWeight: typography.subtitle.fontWeight,
+    },
+    actionText: {
+      color: colors.primary,
+      fontSize: typography.body.fontSize,
+      textAlign: textAlignStart,
+    },
+  });
 
   const startAction = isRTL ? rightAction : leftAction;
   const endAction = isRTL ? leftAction : rightAction;
@@ -24,53 +48,23 @@ export function AppHeader({ title, leftAction, rightAction, style }: AppHeaderPr
     <View
       style={[
         styles.container,
-        {
-          backgroundColor: colors.surface,
-          borderBottomColor: colors.border,
-          minHeight: layout.headerMinHeight,
-          paddingStart: spacing.screenHorizontal,
-          paddingEnd: spacing.screenHorizontal,
-          paddingTop: spacing.sm,
-          paddingBottom: spacing.sm,
-        },
+        themedStyles.container,
         style,
       ]}>
-      <View style={[styles.side, { flexBasis: layout.headerActionWidth }]}>
+      <View style={[styles.side, themedStyles.sideWidth]}>
         {startAction ? (
           <Pressable onPress={startAction.onPress}>
-            <Text
-              style={[
-                styles.actionText,
-                { color: colors.primary, fontSize: typography.body.fontSize, textAlign: textAlignStart },
-              ]}>
-              {startAction.label}
-            </Text>
+            <Text style={[styles.actionText, themedStyles.actionText]}>{startAction.label}</Text>
           </Pressable>
         ) : null}
       </View>
 
-      <Text
-        style={[
-          styles.title,
-          {
-            color: colors.text,
-            fontSize: typography.subtitle.fontSize,
-            fontWeight: typography.subtitle.fontWeight,
-          },
-        ]}>
-        {title}
-      </Text>
+      <Text style={[styles.title, themedStyles.title]}>{title}</Text>
 
-      <View style={[styles.side, styles.sideEnd, { flexBasis: layout.headerActionWidth }]}>
+      <View style={[styles.side, styles.sideEnd, themedStyles.sideWidth]}>
         {endAction ? (
           <Pressable onPress={endAction.onPress}>
-            <Text
-              style={[
-                styles.actionText,
-                { color: colors.primary, fontSize: typography.body.fontSize, textAlign: textAlignStart },
-              ]}>
-              {endAction.label}
-            </Text>
+            <Text style={[styles.actionText, themedStyles.actionText]}>{endAction.label}</Text>
           </Pressable>
         ) : null}
       </View>

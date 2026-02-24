@@ -17,11 +17,16 @@ export function ThemedText({
   ...rest
 }: ThemedTextProps) {
   const color = useThemeColor({ light: lightColor, dark: darkColor }, 'text');
+  const themedStyles = StyleSheet.create({
+    textColor: {
+      color,
+    },
+  });
 
   return (
     <Text
       style={[
-        { color },
+        themedStyles.textColor,
         type === 'default' ? styles.default : undefined,
         type === 'title' ? styles.title : undefined,
         type === 'defaultSemiBold' ? styles.defaultSemiBold : undefined,

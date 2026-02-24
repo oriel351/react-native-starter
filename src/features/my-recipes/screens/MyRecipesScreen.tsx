@@ -6,21 +6,18 @@ import { useTheme } from '@/ui/theme';
 
 export default function MyRecipesScreen() {
   const { colors, textAlignStart, typography } = useTheme();
+  const themedStyles = StyleSheet.create({
+    title: {
+      color: colors.text,
+      fontSize: typography.title.fontSize,
+      fontWeight: typography.title.fontWeight,
+      textAlign: textAlignStart,
+    },
+  });
 
   return (
     <Screen header={<AppHeader title="My Recipes" />} centered>
-      <Text
-        style={[
-          styles.title,
-          {
-            color: colors.text,
-            fontSize: typography.title.fontSize,
-            fontWeight: typography.title.fontWeight,
-            textAlign: textAlignStart,
-          },
-        ]}>
-        My Recipes
-      </Text>
+      <Text style={[styles.title, themedStyles.title]}>My Recipes</Text>
     </Screen>
   );
 }

@@ -6,21 +6,18 @@ import { useTheme } from '@/ui/theme';
 
 export default function ProfileScreen() {
   const { colors, textAlignStart, typography } = useTheme();
+  const themedStyles = StyleSheet.create({
+    title: {
+      color: colors.text,
+      fontSize: typography.title.fontSize,
+      fontWeight: typography.title.fontWeight,
+      textAlign: textAlignStart,
+    },
+  });
 
   return (
     <Screen header={<AppHeader title="Profile" />} centered>
-      <Text
-        style={[
-          styles.title,
-          {
-            color: colors.text,
-            fontSize: typography.title.fontSize,
-            fontWeight: typography.title.fontWeight,
-            textAlign: textAlignStart,
-          },
-        ]}>
-        Profile
-      </Text>
+      <Text style={[styles.title, themedStyles.title]}>Profile</Text>
     </Screen>
   );
 }
