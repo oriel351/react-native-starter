@@ -1,17 +1,9 @@
-import { ThemedText } from '@/ui/components/ThemedText';
-import { ThemedView } from '@/ui/components/ThemedView';
+import { Text, View } from 'react-native';
 
 export default function ProfileScreen() {
   return (
-    <ThemedView
-      style={{
-        flex: 1,
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: 16,
-      }}>
-      <ThemedText type="title">Profile</ThemedText>
-      <ThemedText>Coming soon.</ThemedText>
-    </ThemedView>
+    <View>
+      <Text>Profile</Text>
+    </View>
   );
 }

@@ -1,9 +1,9 @@
 import { Text, View } from 'react-native';
 
-export default function AddScreen() {
+export default function MyRecipesScreen() {
   return (
     <View>
-      <Text>Add</Text>
+      <Text>My Recipes</Text>
     </View>
   );
 }

@@ -1,3 +1,3 @@
-import ExploreScreen from '@/features/explore/screens/ExploreScreen';
+import MyRecipesScreen from '@/features/my-recipes/screens/MyRecipesScreen';
 
-export default ExploreScreen;
+export default MyRecipesScreen;
