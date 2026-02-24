@@ -1,6 +1,6 @@
-import { openBrowserAsync, WebBrowserPresentationStyle } from 'expo-web-browser';
 import { type ComponentProps } from 'react';
 
+import { openExternalBrowser } from '@/platform/browser';
 import { Href, Link } from '@/platform/navigation';
 
 type Props = Omit<ComponentProps<typeof Link>, 'href'> & { href: Href & string };
@@ -16,9 +16,7 @@ export function ExternalLink({ href, ...rest }: Props) {
           // Prevent the default behavior of linking to the default browser on native.
           event.preventDefault();
           // Open the link in an in-app browser.
-          await openBrowserAsync(href, {
-            presentationStyle: WebBrowserPresentationStyle.AUTOMATIC,
-          });
+          await openExternalBrowser(href);
         }
       }}
     />

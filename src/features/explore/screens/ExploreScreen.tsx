@@ -1,6 +1,6 @@
-import { Image } from 'expo-image';
 import { Platform, StyleSheet } from 'react-native';
 
+import { AppImage } from '@/platform/image';
 import { ExternalLink } from '@/ui/components/ExternalLink';
 import ParallaxScrollView from '@/ui/components/ParallaxScrollView';
 import { ThemedText } from '@/ui/components/ThemedText';
@@ -67,7 +67,7 @@ export default function ExploreScreen() {
           <ThemedText type="defaultSemiBold">@3x</ThemedText> suffixes to provide files for
           different screen densities
         </ThemedText>
-        <Image
+        <AppImage
           source={require('../../../../assets/images/react-logo.png')}
           style={dynamicStyles.centerImage}
         />
