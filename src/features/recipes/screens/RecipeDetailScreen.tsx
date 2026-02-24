@@ -1,7 +1,7 @@
-import { useLocalSearchParams } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text } from 'react-native';
 
+import { useLocalSearchParams } from '@/platform/navigation';
 import { AppHeader } from '@/ui/layout/AppHeader';
 import { Screen } from '@/ui/layout/Screen';
 import { useTheme } from '@/ui/theme';

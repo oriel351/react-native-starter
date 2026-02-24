@@ -1,8 +1,8 @@
-import { useRouter } from 'expo-router';
 import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { requireAuth } from '@/features/auth/guards/requireAuth';
+import { useRouter } from '@/platform/navigation';
 import { AppHeader } from '@/ui/layout/AppHeader';
 import { Screen } from '@/ui/layout/Screen';
 import { spacing, useTheme } from '@/ui/theme';

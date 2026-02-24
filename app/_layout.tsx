@@ -1,10 +1,10 @@
 import { useEffect, useState } from 'react';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
-import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
 import { initializeI18n } from '@/i18n';
+import { Stack } from '@/platform/navigation';
 import { useColorScheme } from '@/ui/theme/useColorScheme';
 
 export const unstable_settings = {

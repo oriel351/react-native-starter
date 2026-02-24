@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { Redirect } from '@/platform/navigation';
 
 export default function ModalScreen() {
   return <Redirect href="/auth/modal" />;

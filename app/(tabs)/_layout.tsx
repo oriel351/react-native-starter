@@ -1,7 +1,7 @@
-import { Tabs } from 'expo-router';
 import React from 'react';
 import { useTranslation } from 'react-i18next';
 
+import { Tabs } from '@/platform/navigation';
 import { HapticTab } from '@/ui/components/HapticTab';
 import { IconSymbol } from '@/ui/components/ui/IconSymbol';
 import { Colors } from '@/ui/theme/theme';

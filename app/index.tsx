@@ -1,4 +1,4 @@
-import { Redirect } from 'expo-router';
+import { Redirect } from '@/platform/navigation';
 
 export default function Index() {
   return <Redirect href="/(tabs)/home" />;

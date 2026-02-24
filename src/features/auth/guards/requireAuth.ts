@@ -1,6 +1,5 @@
-import { router } from 'expo-router';
-
 import { authStore } from '@/features/auth/store/authStore';
+import { router } from '@/platform/navigation';
 
 export function requireAuth(onAuthed?: () => void) {
   if (authStore.isGuest) {
