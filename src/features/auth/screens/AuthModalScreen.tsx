@@ -2,59 +2,78 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { authStore } from '@/features/auth/store/authStore';
+import { AppHeader } from '@/ui/layout/AppHeader';
+import { Screen } from '@/ui/layout/Screen';
+import { spacing, useTheme } from '@/ui/theme';
 
 export default function AuthModalScreen() {
   const router = useRouter();
+  const { colors, textAlignStart, typography } = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Login / Register</Text>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          authStore.setGuest();
-          router.back();
-        }}>
-        <Text>Continue as Guest</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          authStore.setLoggedIn();
-          router.back();
-        }}>
-        <Text>Login</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          authStore.setLoggedIn();
-          router.back();
-        }}>
-        <Text>Register</Text>
-      </Pressable>
-    </View>
+    <Screen header={<AppHeader title="Login / Register" />} centered>
+      <View style={styles.content}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: colors.text,
+              fontSize: typography.title.fontSize,
+              fontWeight: typography.title.fontWeight,
+              textAlign: textAlignStart,
+            },
+          ]}>
+          Login / Register
+        </Text>
+        <Pressable
+          style={[styles.button, { borderColor: colors.border }]}
+          onPress={() => {
+            authStore.setGuest();
+            router.back();
+          }}>
+          <Text style={[styles.buttonLabel, { color: colors.text, textAlign: textAlignStart }]}>
+            Continue as Guest
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[styles.button, { borderColor: colors.border }]}
+          onPress={() => {
+            authStore.setLoggedIn();
+            router.back();
+          }}>
+          <Text style={[styles.buttonLabel, { color: colors.text, textAlign: textAlignStart }]}>
+            Login
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[styles.button, { borderColor: colors.border }]}
+          onPress={() => {
+            authStore.setLoggedIn();
+            router.back();
+          }}>
+          <Text style={[styles.buttonLabel, { color: colors.text, textAlign: textAlignStart }]}>
+            Register
+          </Text>
+        </Pressable>
+      </View>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  content: {
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24,
-    gap: 12,
+    gap: spacing.base,
+    width: '100%',
   },
-  title: {
-    fontSize: 24,
-  },
+  title: {},
   button: {
     width: '100%',
-    maxWidth: 320,
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingVertical: spacing.buttonVertical,
+    paddingHorizontal: spacing.md,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
   },
+  buttonLabel: {},
 });

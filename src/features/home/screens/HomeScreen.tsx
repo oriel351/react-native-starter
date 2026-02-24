@@ -2,49 +2,66 @@ import { useRouter } from 'expo-router';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { requireAuth } from '@/features/auth/guards/requireAuth';
+import { AppHeader } from '@/ui/layout/AppHeader';
+import { Screen } from '@/ui/layout/Screen';
+import { spacing, useTheme } from '@/ui/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { colors, textAlignStart, typography } = useTheme();
 
   return (
-    <View style={styles.container}>
-      <Text style={styles.title}>Home</Text>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          requireAuth(() => console.log('saved'));
-        }}>
-        <Text>Save recipe (requires login)</Text>
-      </Pressable>
-      <Pressable
-        style={styles.button}
-        onPress={() => {
-          router.push('/recipe/123');
-        }}>
-        <Text>Open recipe 123</Text>
-      </Pressable>
-    </View>
+    <Screen header={<AppHeader title="Home" />} centered>
+      <View style={styles.content}>
+        <Text
+          style={[
+            styles.title,
+            {
+              color: colors.text,
+              fontSize: typography.title.fontSize,
+              fontWeight: typography.title.fontWeight,
+              textAlign: textAlignStart,
+            },
+          ]}>
+          Home
+        </Text>
+        <Pressable
+          style={[styles.button, { borderColor: colors.border }]}
+          onPress={() => {
+            requireAuth(() => console.log('saved'));
+          }}>
+          <Text style={[styles.buttonLabel, { color: colors.text, textAlign: textAlignStart }]}>
+            Save recipe (requires login)
+          </Text>
+        </Pressable>
+        <Pressable
+          style={[styles.button, { borderColor: colors.border }]}
+          onPress={() => {
+            router.push('/recipe/123');
+          }}>
+          <Text style={[styles.buttonLabel, { color: colors.text, textAlign: textAlignStart }]}>
+            Open recipe 123
+          </Text>
+        </Pressable>
+      </View>
+    </Screen>
   );
 }
 
 const styles = StyleSheet.create({
-  container: {
-    flex: 1,
+  content: {
     alignItems: 'center',
-    justifyContent: 'center',
-    padding: 24,
-    gap: 12,
+    gap: spacing.base,
+    width: '100%',
   },
-  title: {
-    fontSize: 24,
-  },
+  title: {},
   button: {
     width: '100%',
-    maxWidth: 320,
     alignItems: 'center',
-    paddingVertical: 10,
-    paddingHorizontal: 12,
+    paddingVertical: spacing.buttonVertical,
+    paddingHorizontal: spacing.md,
     borderWidth: StyleSheet.hairlineWidth,
     borderRadius: 8,
   },
+  buttonLabel: {},
 });
