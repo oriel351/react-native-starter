@@ -1,5 +1,5 @@
 import { useRouter } from 'expo-router';
-import { Pressable, Text, View } from 'react-native';
+import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { authStore } from '@/features/auth/store/authStore';
 
@@ -7,9 +7,10 @@ export default function AuthModalScreen() {
   const router = useRouter();
 
   return (
-    <View>
-      <Text>Login / Register</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Login / Register</Text>
       <Pressable
+        style={styles.button}
         onPress={() => {
           authStore.setGuest();
           router.back();
@@ -17,6 +18,7 @@ export default function AuthModalScreen() {
         <Text>Continue as Guest</Text>
       </Pressable>
       <Pressable
+        style={styles.button}
         onPress={() => {
           authStore.setLoggedIn();
           router.back();
@@ -24,6 +26,7 @@ export default function AuthModalScreen() {
         <Text>Login</Text>
       </Pressable>
       <Pressable
+        style={styles.button}
         onPress={() => {
           authStore.setLoggedIn();
           router.back();
@@ -33,3 +36,25 @@ export default function AuthModalScreen() {
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24,
+    gap: 12,
+  },
+  title: {
+    fontSize: 24,
+  },
+  button: {
+    width: '100%',
+    maxWidth: 320,
+    alignItems: 'center',
+    paddingVertical: 10,
+    paddingHorizontal: 12,
+    borderWidth: StyleSheet.hairlineWidth,
+    borderRadius: 8,
+  },
+});

@@ -1,9 +1,21 @@
-import { Text, View } from 'react-native';
+import { StyleSheet, Text, View } from 'react-native';
 
 export default function AddScreen() {
   return (
-    <View>
-      <Text>Add</Text>
+    <View style={styles.container}>
+      <Text style={styles.title}>Add</Text>
     </View>
   );
 }
+
+const styles = StyleSheet.create({
+  container: {
+    flex: 1,
+    alignItems: 'center',
+    justifyContent: 'center',
+    padding: 24,
+  },
+  title: {
+    fontSize: 24,
+  },
+});
