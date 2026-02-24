@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text } from 'react-native';
 
 import { AppHeader } from '@/ui/layout/AppHeader';
@@ -5,6 +6,7 @@ import { Screen } from '@/ui/layout/Screen';
 import { useTheme } from '@/ui/theme';
 
 export default function AddScreen() {
+  const { t } = useTranslation();
   const { colors, textAlignStart, typography } = useTheme();
   const styles = StyleSheet.create({
     title: {
@@ -16,8 +18,8 @@ export default function AddScreen() {
   });
 
   return (
-    <Screen header={<AppHeader title="Add" />} centered>
-      <Text style={styles.title}>Add</Text>
+    <Screen header={<AppHeader title={t('add.headerTitle')} />} centered>
+      <Text style={styles.title}>{t('add.title')}</Text>
     </Screen>
   );
 }

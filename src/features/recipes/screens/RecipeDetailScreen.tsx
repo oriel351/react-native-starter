@@ -1,4 +1,5 @@
 import { useLocalSearchParams } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text } from 'react-native';
 
 import { AppHeader } from '@/ui/layout/AppHeader';
@@ -7,6 +8,7 @@ import { useTheme } from '@/ui/theme';
 
 export default function RecipeDetailScreen() {
   const { id } = useLocalSearchParams<{ id?: string }>();
+  const { t } = useTranslation();
   const { colors, textAlignStart, typography } = useTheme();
   const styles = StyleSheet.create({
     title: {
@@ -18,8 +20,8 @@ export default function RecipeDetailScreen() {
   });
 
   return (
-    <Screen header={<AppHeader title="Recipe Detail" />} centered>
-      <Text style={styles.title}>{`Recipe Detail: ${id ?? ''}`}</Text>
+    <Screen header={<AppHeader title={t('recipes.detailHeaderTitle')} />} centered>
+      <Text style={styles.title}>{t('recipes.detailTitle', { id: id ?? '' })}</Text>
     </Screen>
   );
 }

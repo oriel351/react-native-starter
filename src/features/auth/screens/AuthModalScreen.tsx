@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { authStore } from '@/features/auth/store/authStore';
@@ -8,6 +9,7 @@ import { spacing, useTheme } from '@/ui/theme';
 
 export default function AuthModalScreen() {
   const router = useRouter();
+  const { t } = useTranslation();
   const { colors, textAlignStart, typography } = useTheme();
   const styles = StyleSheet.create({
     content: {
@@ -37,16 +39,16 @@ export default function AuthModalScreen() {
   });
 
   return (
-    <Screen header={<AppHeader title="Login / Register" />} centered>
+    <Screen header={<AppHeader title={t('auth.headerTitle')} />} centered>
       <View style={styles.content}>
-        <Text style={styles.title}>Login / Register</Text>
+        <Text style={styles.title}>{t('auth.title')}</Text>
         <Pressable
           style={styles.button}
           onPress={() => {
             authStore.setGuest();
             router.back();
           }}>
-          <Text style={styles.buttonLabel}>Continue as Guest</Text>
+          <Text style={styles.buttonLabel}>{t('auth.continueAsGuest')}</Text>
         </Pressable>
         <Pressable
           style={styles.button}
@@ -54,7 +56,7 @@ export default function AuthModalScreen() {
             authStore.setLoggedIn();
             router.back();
           }}>
-          <Text style={styles.buttonLabel}>Login</Text>
+          <Text style={styles.buttonLabel}>{t('auth.login')}</Text>
         </Pressable>
         <Pressable
           style={styles.button}
@@ -62,7 +64,7 @@ export default function AuthModalScreen() {
             authStore.setLoggedIn();
             router.back();
           }}>
-          <Text style={styles.buttonLabel}>Register</Text>
+          <Text style={styles.buttonLabel}>{t('auth.register')}</Text>
         </Pressable>
       </View>
     </Screen>

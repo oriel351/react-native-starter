@@ -1,4 +1,5 @@
 import { useRouter } from 'expo-router';
+import { useTranslation } from 'react-i18next';
 import { Pressable, StyleSheet, Text, View } from 'react-native';
 
 import { requireAuth } from '@/features/auth/guards/requireAuth';
@@ -8,6 +9,7 @@ import { spacing, useTheme } from '@/ui/theme';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { t } = useTranslation();
   const { colors, textAlignStart, typography } = useTheme();
   const styles = StyleSheet.create({
     content: {
@@ -37,22 +39,22 @@ export default function HomeScreen() {
   });
 
   return (
-    <Screen header={<AppHeader title="Home" />} centered>
+    <Screen header={<AppHeader title={t('home.headerTitle')} />} centered>
       <View style={styles.content}>
-        <Text style={styles.title}>Home</Text>
+        <Text style={styles.title}>{t('home.title')}</Text>
         <Pressable
           style={styles.button}
           onPress={() => {
             requireAuth(() => console.log('saved'));
           }}>
-          <Text style={styles.buttonLabel}>Save recipe (requires login)</Text>
+          <Text style={styles.buttonLabel}>{t('home.saveRecipeRequiresLogin')}</Text>
         </Pressable>
         <Pressable
           style={styles.button}
           onPress={() => {
             router.push('/recipe/123');
           }}>
-          <Text style={styles.buttonLabel}>Open recipe 123</Text>
+          <Text style={styles.buttonLabel}>{t('home.openRecipe123')}</Text>
         </Pressable>
       </View>
     </Screen>

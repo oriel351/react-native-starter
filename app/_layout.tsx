@@ -1,8 +1,10 @@
+import { useEffect, useState } from 'react';
 import { DarkTheme, DefaultTheme, ThemeProvider } from '@react-navigation/native';
 import { Stack } from 'expo-router';
 import { StatusBar } from 'expo-status-bar';
 import 'react-native-reanimated';
 
+import { initializeI18n } from '@/i18n';
 import { useColorScheme } from '@/ui/theme/useColorScheme';
 
 export const unstable_settings = {
@@ -11,6 +13,25 @@ export const unstable_settings = {
 
 export default function RootLayout() {
   const colorScheme = useColorScheme();
+  const [isI18nReady, setIsI18nReady] = useState(false);
+
+  useEffect(() => {
+    let isMounted = true;
+
+    initializeI18n().finally(() => {
+      if (isMounted) {
+        setIsI18nReady(true);
+      }
+    });
+
+    return () => {
+      isMounted = false;
+    };
+  }, []);
+
+  if (!isI18nReady) {
+    return null;
+  }
 
   return (
     <ThemeProvider value={colorScheme === 'dark' ? DarkTheme : DefaultTheme}>

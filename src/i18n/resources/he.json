@@ -1,0 +1,43 @@
+{
+  "tabs": {
+    "home": "בית",
+    "myRecipes": "המתכונים שלי",
+    "add": "הוסף",
+    "profile": "פרופיל"
+  },
+  "home": {
+    "headerTitle": "בית",
+    "title": "בית",
+    "saveRecipeRequiresLogin": "שמור מתכון (נדרש להתחבר)",
+    "openRecipe123": "פתח מתכון 123"
+  },
+  "myRecipes": {
+    "headerTitle": "המתכונים שלי",
+    "title": "המתכונים שלי"
+  },
+  "add": {
+    "headerTitle": "הוסף",
+    "title": "הוסף"
+  },
+  "profile": {
+    "headerTitle": "פרופיל",
+    "title": "פרופיל"
+  },
+  "search": {
+    "headerTitle": "חיפוש",
+    "title": "חיפוש"
+  },
+  "recipes": {
+    "detailHeaderTitle": "פרטי מתכון",
+    "detailTitle": "פרטי מתכון: {{id}}",
+    "cookingModeHeaderTitle": "מצב בישול",
+    "cookingModeTitle": "מצב בישול"
+  },
+  "auth": {
+    "headerTitle": "התחברות / הרשמה",
+    "title": "התחברות / הרשמה",
+    "continueAsGuest": "המשך כאורח",
+    "login": "התחברות",
+    "register": "הרשמה"
+  }
+}

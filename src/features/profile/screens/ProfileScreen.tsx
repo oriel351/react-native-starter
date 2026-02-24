@@ -1,3 +1,4 @@
+import { useTranslation } from 'react-i18next';
 import { StyleSheet, Text } from 'react-native';
 
 import { AppHeader } from '@/ui/layout/AppHeader';
@@ -5,6 +6,7 @@ import { Screen } from '@/ui/layout/Screen';
 import { useTheme } from '@/ui/theme';
 
 export default function ProfileScreen() {
+  const { t } = useTranslation();
   const { colors, textAlignStart, typography } = useTheme();
   const styles = StyleSheet.create({
     title: {
@@ -16,8 +18,8 @@ export default function ProfileScreen() {
   });
 
   return (
-    <Screen header={<AppHeader title="Profile" />} centered>
-      <Text style={styles.title}>Profile</Text>
+    <Screen header={<AppHeader title={t('profile.headerTitle')} />} centered>
+      <Text style={styles.title}>{t('profile.title')}</Text>
     </Screen>
   );
 }

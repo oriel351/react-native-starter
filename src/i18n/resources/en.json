@@ -1,0 +1,43 @@
+{
+  "tabs": {
+    "home": "Home",
+    "myRecipes": "My Recipes",
+    "add": "Add",
+    "profile": "Profile"
+  },
+  "home": {
+    "headerTitle": "Home",
+    "title": "Home",
+    "saveRecipeRequiresLogin": "Save recipe (requires login)",
+    "openRecipe123": "Open recipe 123"
+  },
+  "myRecipes": {
+    "headerTitle": "My Recipes",
+    "title": "My Recipes"
+  },
+  "add": {
+    "headerTitle": "Add",
+    "title": "Add"
+  },
+  "profile": {
+    "headerTitle": "Profile",
+    "title": "Profile"
+  },
+  "search": {
+    "headerTitle": "Search",
+    "title": "Search"
+  },
+  "recipes": {
+    "detailHeaderTitle": "Recipe Detail",
+    "detailTitle": "Recipe Detail: {{id}}",
+    "cookingModeHeaderTitle": "Cooking Mode",
+    "cookingModeTitle": "Cooking Mode"
+  },
+  "auth": {
+    "headerTitle": "Login / Register",
+    "title": "Login / Register",
+    "continueAsGuest": "Continue as Guest",
+    "login": "Login",
+    "register": "Register"
+  }
+}
