@@ -1,50 +1,65 @@
-# Welcome to your Expo app 👋
+# react native starter
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+This is a React Native + Expo starter project with the core plumbing already wired:
 
-## Get started
+- File-based routing
+- Feature-first folder structure
+- i18n with language persistence and RTL support
+- Light/dark theme tokens
+- Shared layout primitives
+- Platform adapter layer for SDK/framework access
 
-1. Install dependencies
+Use this as a base for any React Native app, then add screens and richer UI by following the project conventions.
 
-   ```bash
-   npm install
-   ```
-
-2. Start the app
-
-   ```bash
-   npx expo start
-   ```
-
-In the output, you'll find options to open the app in a
-
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
-
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
-
-## Get a fresh project
-
-When you're ready, run:
+## Quick start
 
 ```bash
-npm run reset-project
+npm install
+npx expo start
 ```
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+## Project structure
 
-## Learn more
+- `app/`
+  - Routing only.
+  - Route files should re-export screens from `src/features/*/screens`.
+  - Layout files configure navigation/providers only.
+- `src/features/<feature>/`
+  - Feature/domain code.
+  - Use `screens/` for route-level UI and add `components/`, `hooks/`, `store/`, `guards/` as needed.
+- `src/ui/layout/`
+  - Shared layout primitives (`AppShell`, `Screen`, `AppHeader`).
+- `src/ui/theme/`
+  - Theme tokens/hooks (colors, spacing, typography, layout, color scheme).
+  - Light/dark behavior is already enabled.
+- `src/i18n/`
+  - i18n setup, supported languages, translation resources.
+- `src/lib/`
+  - Framework-agnostic app utilities.
+- `src/platform/`
+  - Adapters for Expo/SDK/framework APIs (navigation, storage, icons, haptics, etc.).
 
-To learn more about developing your project with Expo, look at the following resources:
+## Conventions to follow
 
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
+- Separation of concerns
+  - Keep business logic in features.
+  - Keep routing in `app/`.
+  - Keep SDK calls behind `src/platform/*` adapters.
+- Strings
+  - Do not hardcode user-facing text in components.
+  - Add strings to `src/i18n/resources/*` and use `t(...)`.
+- Styles
+  - Use `StyleSheet.create`.
+  - Prefer theme tokens from `@/ui/theme` for spacing/colors/typography.
+  - Use logical direction properties (`paddingStart`, `marginEnd`, `textAlign: "start"`) for RTL/LTR support.
+- Layout
+  - Prefer shared primitives (`Screen`, `AppShell`, `AppHeader`) over one-off wrappers.
 
-## Join the community
+## Validation
 
-Join our community of developers creating universal apps.
+Run these before shipping changes:
 
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+```bash
+npx tsc --noEmit
+npx expo export --platform web --output-dir /tmp/kookit-mobile-export
+```
