@@ -14,11 +14,11 @@ type ScreenComponent = ((props: ScreenProps) => ReactElement) & {
   Scroll: (props: ScreenProps) => ReactElement;
 };
 
-const ScreenBase = ((props: ScreenProps) => {
+const ScreenBase = (function Screen(props: ScreenProps) {
   return <AppShell {...props} />;
 }) as ScreenComponent;
 
-ScreenBase.Scroll = (props: ScreenProps) => {
+ScreenBase.Scroll = function ScreenScroll(props: ScreenProps) {
   return <AppShell {...props} scroll />;
 };
 
